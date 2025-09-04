@@ -88,32 +88,10 @@ A modern **full-stack video sharing app** with secure auth, subscriptions, comme
 
 ---
 ***PROJECT STRUCTURE***
-StreamSphere/
-│
-├─ Client/ # Frontend (Vite)
-│ ├─ src/
-│ │ ├─ components/ # Reusable UI
-│ │ ├─ img/ # Assets
-│ │ ├─ Pages/ # Route pages
-│ │ ├─ redux/ # Redux slices/store
-│ │ ├─ utils/ # helpers (axios, guards)
-│ │ ├─ App.jsx
-│ │ ├─ axios.js # axios base + interceptors
-│ │ ├─ firebase.js # Firebase config (OAuth/FCM)
-│ │ └─ main.jsx
-│ ├─ index.html
-│ └─ vite.config.js
-│
-├─ Server/ # Backend (Express)
-│ ├─ controllers/ # route handlers
-│ ├─ models/ # Mongoose schemas
-│ ├─ routes/ # API routes
-│ ├─ verifyToken.js # JWT middleware
-│ └─ index.js # server bootstrap
-│
-├─ .env # root/dev env (ignored)
-├─ package.json
-└─ README.md
+<img width="229" height="812" alt="image" src="https://github.com/user-attachments/assets/e2cfb105-35e1-438f-8506-526485f42081" />
+
+<img width="705" height="682" alt="image" src="https://github.com/user-attachments/assets/1cc9910c-c372-438f-8d21-e9bbee716d9b" />
+
 
 
 ---
