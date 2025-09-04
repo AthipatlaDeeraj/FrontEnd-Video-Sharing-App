@@ -1,175 +1,147 @@
-🎥 StreamSphere – Next-Gen Video Sharing Platform
+# 🎥 StreamSphere — Next-Gen Video Sharing Platform
 
-A modern full-stack video sharing platform designed for seamless content creation, real-time engagement, and a personalized user experience.
+A modern **full-stack video sharing app** with secure auth, subscriptions, comments, likes/dislikes, playlists, watch history, **dark/light theme**, and a **clean, responsive UI**. Built on **React (Vite) + Node.js/Express + MongoDB**, with optional **Firebase (OAuth/notifications)** and **FFmpeg/Cloudinary** for media.
 
-Built with React (Vite), Node.js, and MongoDB, StreamSphere goes beyond basic video sharing by introducing collaborative and AI-driven features, ensuring a truly unique experience for both creators and viewers.
+> **Not a YouTube clone** — StreamSphere adds **Watch Parties, Creator Collabs, AI Highlights, Quiz Mode**, and flexible monetization.
 
-🌟 Key Features
-👥 Authentication & User Management
+---
 
-Secure Authentication with JWT (Signup/Login/Logout)
+## 📚 Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Available Scripts](#-available-scripts)
+- [API Overview](#-api-overview)
+- [Screenshots](#-screenshots)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Social login using Google OAuth via Firebase
+---
 
-Role-based access → User, Creator, Admin
+## 🌟 Features
 
-Email verification and password reset flow
+### 🔐 Authentication & Users
+- JWT **Signup/Login/Logout**, refresh tokens
+- **Google OAuth** (Firebase)
+- **Role-based access**: `user`, `creator`, `admin`
+- Email verify + **forgot/reset password**
+- Optional **2FA** (TOTP)
 
-Two-Factor Authentication (2FA) for extra security
+### 🎬 Video & Media
+- Drag-and-drop **upload**, edit, delete
+- **FFmpeg** compression + **thumbnail** generation
+- Privacy: **Public / Unlisted / Private**
+- **HLS streaming** (adaptive) ready
+- **Auto-tagging** & categories (AI optional)
+- Batch uploads
 
-📹 Video Management
+### 💬 Social & Engagement
+- **Likes / Dislikes**
+- **Threaded comments & replies** (markdown)
+- **Playlists** + **Watch Later**
+- **Share with timestamp** links
+- **Watch history** & resume playback
+- Real-time **notifications** (likes, comments, subs)
 
-Upload, edit, and delete videos with drag-and-drop uploader
+### 💸 Monetization & Subscriptions
+- Follow/Subscribe creators
+- **Tiered memberships** (supporter, pro, premium)
+- **Pay-per-view** options
+- Basic revenue dashboard for creators
 
-Automatic video compression & thumbnail generation via FFmpeg
+### 🌓 UI/UX
+- **TailwindCSS** responsive layout
+- **Dark/Light** theme (system + user preference)
+- Keyboard shortcuts, accessible player, captions
+- Fast search & filter: duration, category, popularity, recency
 
-Privacy settings: Public, Private, or Unlisted
+### 🚀 Unique Differentiators (beyond YouTube)
+- **Watch Parties**: synced playback with room chat
+- **Creator Collabs**: co-owned series + revenue split
+- **AI Highlights**: auto-generated key moments/timestamps
+- **Quiz Mode**: time-stamped questions for edu videos
+- **Offline Mode**: cache videos for offline viewing
+- **Focus Mode**: distraction-free player + notes
 
-Batch upload support for creators
+### 📈 Creator & Admin
+- Creator analytics: views, retention, engagement, revenue
+- Admin: user moderation, content review, policy flags
+- Platform health metrics & reports
 
-AI-powered auto-tagging & categorization of videos
+---
 
-💬 Community Engagement
+## 🧰 Tech Stack
 
-Likes/Dislikes and threaded comments/replies
+| Layer            | Tools |
+|------------------|------|
+| Frontend         | **React (Vite)**, **Redux Toolkit**, **TailwindCSS** |
+| Backend          | **Node.js**, **Express** |
+| Database         | **MongoDB** (+ **Mongoose**) |
+| Auth             | **JWT**, **Firebase Auth** (Google OAuth) |
+| Media            | **FFmpeg**, **Cloudinary** (or S3) |
+| Realtime         | Socket.io (watch parties/notifications) |
+| Caching/Queues   | Redis (optional) |
+| DevOps           | Docker, AWS (EB) / Render / Railway |
 
-Save to Watch Later and create custom playlists
-
-Share videos with timestamp-based deep links
-
-Real-time notifications for likes, comments, and subscriptions
-
-🚀 Unique Standout Features
-
-These make StreamSphere stand apart from typical YouTube-like clones.
-
-Watch Parties – Host live video sessions with friends, synced playback, and group chat.
-
-Creator Collaboration Mode – Two creators can co-own a series and share revenue.
-
-AI-Generated Highlights – Automatically generate short highlight reels from videos.
-
-Quiz Mode for Educational Content – Embed quizzes at specific timestamps to engage learners.
-
-Custom Monetization Models – Beyond ads, offer pay-per-view or tiered subscription plans.
-
-Dynamic Dark/Light Mode – Automatic switching based on user preference or system settings.
-
-Offline Video Support – Save videos in browser cache for offline playback.
-
-📊 Analytics for Creators
-
-Views, likes/dislikes, and watch-time stats
-
-Revenue breakdown from subscriptions and monetization
-
-Viewer demographics and engagement heatmaps
-
-🛠 Tech Stack
-Category	Tech Used
-Frontend	React.js (Vite), TailwindCSS, Redux Toolkit
-Backend	Node.js, Express.js
-Database	MongoDB, Firebase (auth & notifications)
-Authentication	JWT, Firebase Auth, Google OAuth
-Video Processing	FFmpeg, Cloudinary
-State Management	Redux Toolkit
-Deployment	AWS Elastic Beanstalk, Docker
-Version Control	Git & GitHub
-📂 Project Structure
+---
+***PROJECT STRUCTURE***
 StreamSphere/
 │
-├── Client/                       # Frontend
-│   ├── src/
-│   │   ├── components/           # Reusable UI components
-│   │   ├── img/                   # Static images & icons
-│   │   ├── Pages/                 # Page-level components
-│   │   ├── redux/                 # State management files
-│   │   ├── utils/                 # Utility functions (axios, Firebase configs)
-│   │   ├── App.jsx                # Root app file
-│   │   ├── axios.js               # Axios configuration
-│   │   ├── firebase.js            # Firebase integration
-│   │   └── main.jsx               # React entry point
-│   │
-│   ├── index.html
-│   └── vite.config.js
+├─ Client/ # Frontend (Vite)
+│ ├─ src/
+│ │ ├─ components/ # Reusable UI
+│ │ ├─ img/ # Assets
+│ │ ├─ Pages/ # Route pages
+│ │ ├─ redux/ # Redux slices/store
+│ │ ├─ utils/ # helpers (axios, guards)
+│ │ ├─ App.jsx
+│ │ ├─ axios.js # axios base + interceptors
+│ │ ├─ firebase.js # Firebase config (OAuth/FCM)
+│ │ └─ main.jsx
+│ ├─ index.html
+│ └─ vite.config.js
 │
-├── Server/                        # Backend
-│   ├── controllers/               # Business logic
-│   ├── models/                     # MongoDB schemas
-│   ├── routes/                     # API endpoints
-│   ├── verifyToken.js              # JWT middleware
-│   └── index.js                    # Backend entry point
+├─ Server/ # Backend (Express)
+│ ├─ controllers/ # route handlers
+│ ├─ models/ # Mongoose schemas
+│ ├─ routes/ # API routes
+│ ├─ verifyToken.js # JWT middleware
+│ └─ index.js # server bootstrap
 │
-└── .env                            # Environment variables
-
-🚀 Getting Started
-Prerequisites
-
-Node.js v18+
-
-MongoDB installed or cloud instance
-
-FFmpeg installed for video processing
-
-Firebase project set up for auth & notifications
-
-1. Clone the Repository
-git clone https://github.com/<your-username>/stream-sphere.git
-cd stream-sphere
-
-2. Setup Backend
-cd Server
-npm install
-npm run dev
+├─ .env # root/dev env (ignored)
+├─ package.json
+└─ README.md
 
 
-Create a .env file inside /Server:
+---
 
-MONGO_URI=<your-mongo-uri>
-JWT_SECRET=<your-secret>
-FIREBASE_API_KEY=<your-key>
-FIREBASE_AUTH_DOMAIN=<your-domain>
+## 🚀 Getting Started
 
-3. Setup Frontend
-cd Client
-yarn install
-yarn dev
+### Prerequisites
+- Node.js **18+**
+- MongoDB (local or Atlas)
+- FFmpeg installed (for thumbnails/transcoding)
+- Cloudinary (or S3) account for media storage
+- Firebase project (for Google OAuth & notifications)
 
-📸 Screenshots
-Homepage	Video Player	Creator Dashboard
+### 1) Clone
+```bash
+git clone https://github.com/<your-username>/streamsphere.git
+cd streamsphere
 
-	
-	
-📈 Future Enhancements
-
-AI-driven personalized recommendations based on user behavior
-
-Multi-language subtitle generation using AI
-
-Mobile App using React Native
-
-NFT-based video ownership for creators
-
-AI moderation for harmful or inappropriate content
 
 🤝 Contributing
 
-This is a personal project, but feature suggestions and collaboration are welcome!
-Open a pull request or issue to get involved.
+Personal project, but PRs and feature requests are welcome:
 
-📜 License
+Fork the repo
 
-This project is licensed under the MIT License – feel free to use and modify it with attribution.
+Create a feature branch
 
-💡 Why This Project?
+Open a PR with clear description & screenshots
 
-StreamSphere is not just another video platform.
-It brings together:
+## 🗂 Project Structure
 
-Community-driven features like watch parties and collabs
-
-AI enhancements for smarter content discovery
-
-Creator-first monetization models
-
-A clean, modern UI that focuses on user experience
